@@ -1,22 +1,11 @@
-from flask import Flask
-
-app = Flask(__name__)
+from app import create_app
 
 
-@app.route("/")
-def home():
-    return {
-        "message": "HostelHub backend is running!"
-    }
-
-
-@app.route("/api/health")
-def health():
-    return {
-        "status": "success",
-        "message": "HostelHub API is healthy"
-    }
+app = create_app()
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(
+        debug=True,
+        port=5000
+    )
