@@ -1,6 +1,10 @@
 from flask import Blueprint, request
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import (
+    create_access_token,
+    jwt_required,
+    get_jwt_identity
+)
 
 from ..extensions import db
 from ..models import User
@@ -131,5 +135,35 @@ def login():
             "id": user.id,
             "name": user.name,
             "email": user.email
+        }
+    }, 200
+
+
+# ==========================================
+# GET CURRENT USER
+# ==========================================
+
+@auth_bp.route("/me", methods=["GET"])
+@jwt_required()
+def get_current_user():
+
+    user_id = int(get_jwt_identity())
+
+    user = User.query.get(user_id)
+
+    if not user:
+        return {
+            "message": "User not found"
+        }, 404
+
+    return {
+        "user": {
+            "id": user.id,
+            "name": user.name,
+            "email": user.email,
+            "phone": user.phone,
+            "hostel": user.hostel,
+            "branch": user.branch,
+            "year": user.year
         }
     }, 200

@@ -45,6 +45,43 @@ def get_products():
 
 
 # ==========================================
+# GET MY PRODUCTS
+# ==========================================
+
+@products_bp.route("/my-products", methods=["GET"])
+@jwt_required()
+def get_my_products():
+
+    user_id = int(get_jwt_identity())
+
+    products = Product.query.filter_by(
+        seller_id=user_id
+    ).order_by(
+        Product.created_at.desc()
+    ).all()
+
+    result = []
+
+    for product in products:
+
+        result.append({
+            "id": product.id,
+            "title": product.title,
+            "description": product.description,
+            "price": product.price,
+            "category": product.category,
+            "condition": product.condition,
+            "image": product.image,
+            "seller_id": product.seller_id,
+            "created_at": product.created_at
+        })
+
+    return {
+        "products": result
+    }, 200
+
+
+# ==========================================
 # GET SINGLE PRODUCT
 # ==========================================
 
@@ -58,6 +95,8 @@ def get_product(id):
             "message": "Product not found"
         }, 404
 
+    seller = product.seller
+
     return {
         "id": product.id,
         "title": product.title,
@@ -67,7 +106,17 @@ def get_product(id):
         "condition": product.condition,
         "image": product.image,
         "seller_id": product.seller_id,
-        "created_at": product.created_at
+        "created_at": product.created_at,
+
+        "seller": {
+            "id": seller.id,
+            "name": seller.name,
+            "email": seller.email,
+            "phone": seller.phone,
+            "hostel": seller.hostel,
+            "branch": seller.branch,
+            "year": seller.year
+        }
     }, 200
 
 
