@@ -1,0 +1,150 @@
+
+
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+/* Skeleton card */
+.skeleton-card {
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #f0edf0;
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(31, 41, 55, 0.04);
+  animation: skeleton-appear 0.4s ease both;
+}
+
+/* Product image placeholder */
+.skeleton-card::before {
+  content: "";
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(
+    100deg,
+    #f0edf1 20%,
+    #faf5f7 40%,
+    #f0edf1 60%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
+/* Card content */
+.skeleton-card-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Placeholder lines */
+.skeleton-card-body > * {
+  position: relative;
+  overflow: hidden;
+  border-radius: 7px;
+  background: #f0edf1;
+}
+
+/* Shimmer overlay for content placeholders */
+.skeleton-card-body > *::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
+/* Different placeholder sizes */
+.skeleton-card-body > *:nth-child(1) {
+  width: 42%;
+  height: 12px;
+}
+
+.skeleton-card-body > *:nth-child(2) {
+  width: 85%;
+  height: 17px;
+}
+
+.skeleton-card-body > *:nth-child(3) {
+  width: 65%;
+  height: 12px;
+}
+
+.skeleton-card-body > *:nth-child(4) {
+  width: 50%;
+  height: 20px;
+  margin-top: 5px;
+}
+
+/* Shimmer animation */
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+/* Card entrance animation */
+@keyframes skeleton-appear {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .skeleton-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .skeleton-card-body {
+    padding: 14px;
+    gap: 10px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 420px) {
+  .skeleton-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .skeleton-card {
+    border-radius: 14px;
+  }
+
+  .skeleton-card-body {
+    padding: 11px;
+    gap: 9px;
+  }
+}
+
+/* Accessibility: reduce animation when requested */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-card,
+  .skeleton-card::before,
+  .skeleton-card-body > *::after {
+    animation: none;
+  }
+}

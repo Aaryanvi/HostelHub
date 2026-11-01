@@ -1,0 +1,194 @@
+.inbox-page {
+  padding: var(--space-6) var(--space-5) var(--space-8);
+}
+
+.inbox-title {
+  font-size: 26px;
+  margin-bottom: var(--space-4);
+}
+
+.inbox-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  min-height: 520px;
+  overflow: hidden;
+}
+
+.inbox-list {
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  max-height: 640px;
+}
+
+.inbox-list-loading {
+  padding: var(--space-4);
+}
+
+.inbox-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.inbox-item:hover,
+.inbox-item.active {
+  background: var(--primary-light);
+}
+
+.inbox-item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inbox-item-name {
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.inbox-item-product {
+  font-size: 12px;
+  color: var(--primary);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.inbox-item-preview {
+  font-size: 13px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.inbox-empty {
+  padding: var(--space-7) var(--space-5);
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.inbox-empty h3 {
+  color: var(--text);
+  margin-bottom: var(--space-2);
+}
+
+.inbox-empty p {
+  margin-bottom: var(--space-4);
+  font-size: 14px;
+}
+
+.inbox-thread {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.inbox-thread-header {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.inbox-back {
+  display: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: var(--space-2);
+}
+
+.inbox-thread-name {
+  font-weight: 650;
+  font-size: 15px;
+}
+
+.inbox-thread-product {
+  font-size: 13px;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.inbox-messages {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 440px;
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.inbox-no-messages {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.bubble {
+  max-width: 75%;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  font-size: 14px;
+}
+
+.bubble p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.bubble span {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.bubble.mine {
+  align-self: flex-end;
+  background: var(--primary);
+  color: #fff;
+}
+
+.bubble.theirs {
+  align-self: flex-start;
+  background: var(--background);
+  border: 1px solid var(--border);
+}
+
+.inbox-compose {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-end;
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--border);
+}
+
+.inbox-compose textarea {
+  min-height: 0;
+  resize: none;
+}
+
+@media (max-width: 760px) {
+  .inbox-layout {
+    grid-template-columns: 1fr;
+  }
+
+  /* On phones show either the list or the open conversation, not both. */
+  .inbox-layout.has-thread .inbox-list {
+    display: none;
+  }
+
+  .inbox-layout:not(.has-thread) .inbox-thread {
+    display: none;
+  }
+
+  .inbox-list {
+    border-right: none;
+  }
+
+  .inbox-back {
+    display: inline-block;
+  }
+}

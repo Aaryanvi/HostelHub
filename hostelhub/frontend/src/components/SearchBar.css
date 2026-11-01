@@ -1,0 +1,69 @@
+/* ============================
+   HOSTELHUB SEARCH BAR
+============================ */
+
+.search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 220px;
+}
+
+.search-bar-icon {
+  position: absolute;
+  left: 15px;
+  color: #9ca3af;
+  font-size: 17px;
+  pointer-events: none;
+  transition: color 0.25s ease;
+  z-index: 1;
+}
+
+.search-bar input {
+  width: 100%;
+  height: 46px;
+  padding: 0 16px 0 44px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #1f2937;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.search-bar input::placeholder {
+  color: #9ca3af;
+}
+
+.search-bar input:hover {
+  border-color: #f6b49b;
+}
+
+.search-bar input:focus {
+  border-color: #f47755;
+  box-shadow: 0 0 0 4px rgba(244, 119, 85, 0.12);
+  background: #fffdfc;
+}
+
+.search-bar:focus-within .search-bar-icon {
+  color: #ed667c;
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  .search-bar {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .search-bar input {
+    height: 44px;
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,153 @@
+/* ============================
+   HOSTELHUB FOOTER
+============================ */
+
+.footer {
+  position: relative;
+  border-top: 1px solid #f0e5e8;
+  margin-top: 72px;
+  padding: 42px 24px 24px;
+  background: linear-gradient(180deg, #ffffff 0%, #fff8f6 100%);
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+
+/* Brand section */
+.footer-brand {
+  max-width: 340px;
+}
+
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 800;
+  font-size: 21px;
+  letter-spacing: -0.7px;
+  color: #252536;
+  text-decoration: none;
+}
+
+.footer-logo span {
+  background: linear-gradient(135deg, #ff7738 0%, #ed667c 55%, #bd55d5 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.footer-brand p {
+  max-width: 310px;
+  color: #777785;
+  font-size: 13px;
+  line-height: 1.8;
+  margin-top: 12px;
+}
+
+/* Footer navigation */
+.footer-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 28px;
+  padding-top: 7px;
+}
+
+.footer-links a {
+  position: relative;
+  font-size: 13px;
+  color: #666675;
+  font-weight: 550;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.footer-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #ff7738, #ed667c, #bd55d5);
+  transition: width 0.25s ease;
+}
+
+.footer-links a:hover {
+  color: #ed667c;
+}
+
+.footer-links a:hover::after {
+  width: 100%;
+}
+
+/* Copyright */
+.footer-copy {
+  width: 100%;
+  text-align: center;
+  margin-top: 12px;
+  padding-top: 22px;
+  border-top: 1px solid #f0e5e8;
+  font-size: 12px;
+  color: #9292a0;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .footer {
+    margin-top: 52px;
+    padding: 36px 20px 20px;
+  }
+
+  .footer-inner {
+    gap: 24px;
+  }
+
+  .footer-links {
+    gap: 20px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .footer {
+    margin-top: 44px;
+    padding: 32px 18px 18px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+  }
+
+  .footer-brand {
+    max-width: 100%;
+  }
+
+  .footer-brand p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .footer-links {
+    justify-content: center;
+    gap: 16px 22px;
+    padding-top: 0;
+  }
+
+  .footer-copy {
+    margin-top: 0;
+    line-height: 1.7;
+  }
+}

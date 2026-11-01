@@ -1,0 +1,7 @@
+venv
+__pycache__
+*.pyc
+hostelhub.db
+.env
+uploads
+.pytest_cache

@@ -1,0 +1,49 @@
+# One-command local stack:  docker compose up --build
+# Needs a .env file next to this one (copy .env.example) with SECRET_KEY and JWT_SECRET_KEY.
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: hostelhub
+      POSTGRES_PASSWORD: hostelhub
+      POSTGRES_DB: hostelhub
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hostelhub"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    environment:
+      APP_ENV: production
+      SECRET_KEY: ${SECRET_KEY:?Set SECRET_KEY in .env}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:?Set JWT_SECRET_KEY in .env}
+      DATABASE_URL: postgresql://hostelhub:hostelhub@db:5432/hostelhub
+      CORS_ORIGINS: http://localhost:8080
+      ALLOWED_EMAIL_DOMAINS: ${ALLOWED_EMAIL_DOMAINS:-}
+      ADMIN_EMAILS: ${ADMIN_EMAILS:-}
+      UPLOAD_FOLDER: /data/uploads
+    volumes:
+      - uploads:/data/uploads
+    ports:
+      - "5000:5000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://localhost:5000
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
+  uploads:

@@ -1,0 +1,23 @@
+.saved-page {
+  padding: var(--space-6) var(--space-5) var(--space-8);
+}
+
+.saved-header {
+  margin-bottom: var(--space-5);
+}
+
+.saved-header h1 {
+  font-size: 26px;
+  margin-bottom: 4px;
+}
+
+.saved-header p {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: var(--space-5);
+}

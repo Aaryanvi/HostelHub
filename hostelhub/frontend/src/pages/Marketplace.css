@@ -1,0 +1,312 @@
+
+
+/* Main marketplace container */
+.marketplace {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+  color: #251a2c;
+}
+
+/* =========================================
+   MARKETPLACE HEADER
+========================================= */
+
+.marketplace-header {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 32px;
+  padding: 38px 36px;
+  border-radius: 24px;
+  background: linear-gradient(
+    115deg,
+    #ff7738 0%,
+    #ed667c 48%,
+    #bd55d5 100%
+  );
+  box-shadow: 0 14px 34px rgba(208, 82, 120, 0.16);
+}
+
+.marketplace-header::after {
+  content: "";
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  top: -135px;
+  right: 8%;
+  border: 38px solid rgba(255, 255, 255, 0.13);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.marketplace-header h1 {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 12px;
+  color: #ffffff;
+  font-size: clamp(30px, 4vw, 42px);
+  font-weight: 850;
+  line-height: 1.15;
+  letter-spacing: -1.2px;
+}
+
+.marketplace-header p {
+  position: relative;
+  z-index: 1;
+  max-width: 650px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.94);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* =========================================
+   SEARCH AND FILTER CONTROLS
+========================================= */
+
+.marketplace-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 32px;
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #f0e3e9;
+  border-radius: 20px;
+  box-shadow: 0 8px 28px rgba(48, 25, 55, 0.045);
+}
+
+/* Inputs and dropdowns inside the controls */
+.marketplace-controls input,
+.marketplace-controls select,
+.marketplace-controls textarea {
+  width: 100%;
+  min-height: 46px;
+  padding: 11px 14px;
+  border: 1px solid #e9dfe7;
+  border-radius: 11px;
+  outline: none;
+  background: #fffdfd;
+  color: #302438;
+  font: inherit;
+  font-size: 14px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.marketplace-controls input::placeholder {
+  color: #a29aa8;
+}
+
+.marketplace-controls input:focus,
+.marketplace-controls select:focus,
+.marketplace-controls textarea:focus {
+  border-color: #e66b96;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(230, 94, 147, 0.11);
+}
+
+/* Buttons within the controls */
+.marketplace-controls button {
+  min-height: 44px;
+  padding: 11px 18px;
+  border: 0;
+  border-radius: 11px;
+  background: linear-gradient(110deg, #ff7738, #ed667c 55%, #bd55d5);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 750;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.marketplace-controls button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 18px rgba(218, 78, 125, 0.22);
+}
+
+/* =========================================
+   RESULTS COUNT
+========================================= */
+
+.marketplace-count {
+  margin-bottom: 20px;
+  color: #797080;
+  font-size: 14px;
+  font-weight: 550;
+}
+
+.marketplace-count strong {
+  color: #d95387;
+  font-weight: 800;
+}
+
+/* =========================================
+   PRODUCT GRID
+========================================= */
+
+.marketplace .product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* =========================================
+   LOAD MORE
+========================================= */
+
+.load-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 42px;
+}
+
+.load-more button {
+  min-height: 46px;
+  padding: 12px 28px;
+  border: 1px solid #edc5d5;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #fff4ee, #fff0f6);
+  color: #d94f7c;
+  font-size: 14px;
+  font-weight: 750;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.load-more button:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(110deg, #ff7738, #ed667c, #bd55d5);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 8px 20px rgba(218, 78, 125, 0.2);
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1100px) {
+  .marketplace {
+    padding: 36px 24px 64px;
+  }
+
+  .marketplace .product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .marketplace-header {
+    padding: 32px 28px;
+  }
+}
+
+/* =========================================
+   SMALL TABLET
+========================================= */
+
+@media (max-width: 760px) {
+  .marketplace {
+    padding: 28px 18px 52px;
+  }
+
+  .marketplace-header {
+    margin-bottom: 24px;
+    padding: 28px 24px;
+    border-radius: 19px;
+  }
+
+  .marketplace-header h1 {
+    font-size: 32px;
+  }
+
+  .marketplace-header p {
+    font-size: 14px;
+  }
+
+  .marketplace-controls {
+    gap: 14px;
+    margin-bottom: 26px;
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  .marketplace .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+  .marketplace {
+    padding: 22px 14px 42px;
+  }
+
+  .marketplace-header {
+    padding: 25px 20px;
+    border-radius: 16px;
+  }
+
+  .marketplace-header h1 {
+    font-size: 28px;
+    letter-spacing: -0.7px;
+  }
+
+  .marketplace-header p {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .marketplace-controls {
+    padding: 15px;
+    gap: 12px;
+  }
+
+  .marketplace-controls input,
+  .marketplace-controls select {
+    font-size: 13px;
+  }
+
+  .marketplace .product-grid {
+    gap: 12px;
+  }
+
+  .marketplace-count {
+    font-size: 12px;
+  }
+
+  .load-more {
+    margin-top: 30px;
+  }
+}
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .marketplace-controls input,
+  .marketplace-controls select,
+  .marketplace-controls button,
+  .load-more button {
+    transition: none;
+  }
+
+  .marketplace-controls button:hover,
+  .load-more button:hover {
+    transform: none;
+  }
+}
