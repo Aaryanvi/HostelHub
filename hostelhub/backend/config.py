@@ -17,8 +17,11 @@ def _database_url():
     if not url:
         return "sqlite:///" + os.path.join(BASE_DIR, "hostelhub.db")
     # Some hosts (Heroku/Render) still hand out the old "postgres://" scheme.
-    if url.startswith("postgres://"):
-        url = url.replace("postgres://", "postgresql://", 1)
+        if url.startswith("postgres://"):
+          url = url.replace("postgres://", "postgresql://", 1)
+
+    if url.startswith("postgresql://"):
+     url = url.replace("postgresql://", "postgresql+psycopg://", 1)
     return url
 
 
