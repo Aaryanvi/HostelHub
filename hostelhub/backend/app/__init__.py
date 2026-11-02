@@ -33,6 +33,7 @@ def create_app(config_object=Config):
     from app.routes.uploads import uploads_bp
     from app.routes.messages import messages_bp
     from app.routes.moderation import moderation_bp
+    from app.routes.notifications import notifications_bp
     
 
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
@@ -42,6 +43,7 @@ def create_app(config_object=Config):
     app.register_blueprint(messages_bp, url_prefix="/api/messages")
     app.register_blueprint(moderation_bp, url_prefix="/api/moderation")
     app.register_blueprint(impact_bp, url_prefix="/api/impact")
+    app.register_blueprint(notifications_bp, url_prefix="/api/notifications")
 
     with app.app_context():
         # Creates any missing tables (e.g. messages, reports). Existing tables are untouched.

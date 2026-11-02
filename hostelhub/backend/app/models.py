@@ -250,3 +250,35 @@ class ImpactTransaction(db.Model):
             "created_at": iso(self.created_at),
             "confirmed_at": iso(self.confirmed_at),
         }
+
+class Notification(db.Model):
+    tablename__ = "notifications"
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(
+        db.Integer,
+        db.ForeignKey("users.id"),
+        nullable=False,
+        index=True
+    )
+    title = db.Column(db.String(150), nullable=False)
+    message = db.Column(db.Text, nullable=False)
+    notification_type = db.Column(
+        db.String(50),
+        nullable=False,
+        default="general"
+    )
+    is_read = db.Column(db.Boolean, nullable=False, default=False, index=True)
+    created_at = db.Column(db.DateTime, default=utcnow, nullable=False)
+
+    user = db.relationship("User", backref="notifications")
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "message": self.message,
+            "type": self.notification_type,
+            "is_read": self.is_read,
+            "created_at": iso(self.created_at),
+        }
