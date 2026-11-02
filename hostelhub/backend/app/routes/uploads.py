@@ -52,9 +52,9 @@ def upload_image():
     if cloud_name and api_key and api_secret:
         try:
             cloudinary.config(
-                cloud_name=deldhx0lt,
-                api_key=427388258582251,
-                api_secret=G5AnYzJPWLCVvDPjdV6sPdpOxeI,
+                cloud_name=cloud_name,
+                api_key=api_key,
+                api_secret=api_secret,
                 secure=True
             )
 
