@@ -17,6 +17,7 @@ import SavedItems from "./pages/SavedItems";
 import Inbox from "./pages/Inbox";
 import Admin from "./pages/Admin";
 import ImpactDashboard from "./pages/ImpactDashboard";
+import Notifications from "./pages/Notifications";
 
 function NotFound() {
   return (
@@ -49,7 +50,14 @@ export default function App() {
               <Route path="/inbox/:productId/:userId" element={<ProtectedRoute><Inbox /></ProtectedRoute>} />
               <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
               <Route path="/impact"element={<ProtectedRoute> <ImpactDashboard /></ProtectedRoute>}/>
-
+              <Route
+  path="/notifications"
+  element={
+    <ProtectedRoute>
+      <Notifications />
+    </ProtectedRoute>
+  }
+/>
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

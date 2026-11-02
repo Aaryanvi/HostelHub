@@ -13,15 +13,21 @@ import {
   Menu,
   Leaf,
   X,
+  Bell
 } from "lucide-react";
 
 import { useAuth } from "../context/AuthContext";
 import useUnreadMessages from "../hooks/useUnreadMessages";
+import useUnreadNotifications from "../hooks/useUnreadNotifications";
+
 import "./Navbar.css";
 
 export default function Navbar() {
   const { isAuthenticated, user, logout } = useAuth();
+
   const unread = useUnreadMessages();
+  const unreadNotifications = useUnreadNotifications();
+
   const navigate = useNavigate();
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -38,9 +44,15 @@ export default function Navbar() {
 
   const unreadLabel = unread > 9 ? "9+" : String(unread);
 
+  const notificationLabel =
+    unreadNotifications > 9
+      ? "9+"
+      : String(unreadNotifications);
+
   return (
     <header className="navbar">
       <div className="container navbar-inner">
+
         {/* LOGO */}
         <Link to="/" className="navbar-logo" onClick={closeMenu}>
           <span className="navbar-logo-icon">
@@ -66,6 +78,7 @@ export default function Navbar() {
         <div className="navbar-actions">
           {isAuthenticated ? (
             <>
+              {/* MESSAGES */}
               <Link
                 to="/inbox"
                 className="navbar-icon-link"
@@ -85,16 +98,39 @@ export default function Navbar() {
                 )}
               </Link>
 
+              {/* NOTIFICATIONS */}
+              <Link
+                to="/notifications"
+                className="navbar-icon-link notification-nav-link"
+                aria-label={
+                  unreadNotifications
+                    ? `${unreadNotifications} unread notifications`
+                    : "Notifications"
+                }
+              >
+                <Bell size={18} />
+                <span>Notifications</span>
+
+                {unreadNotifications > 0 && (
+                  <span className="navbar-badge">
+                    {notificationLabel}
+                  </span>
+                )}
+              </Link>
+
+              {/* SAVED */}
               <Link to="/saved" className="navbar-icon-link">
                 <Heart size={18} />
                 <span>Saved</span>
               </Link>
 
+              {/* IMPACT */}
               <Link to="/impact" className="navbar-icon-link">
-              <Leaf size={18} />
-              <span>Impact Dashboard</span>
+                <Leaf size={18} />
+                <span>Impact Dashboard</span>
               </Link>
 
+              {/* ADMIN */}
               {user?.is_admin && (
                 <Link to="/admin" className="navbar-icon-link">
                   <ShieldCheck size={18} />
@@ -102,11 +138,15 @@ export default function Navbar() {
                 </Link>
               )}
 
+              {/* PROFILE */}
               <Link to="/profile" className="navbar-icon-link">
                 <UserRound size={18} />
-                <span>{user?.name?.split(" ")[0] || "Profile"}</span>
+                <span>
+                  {user?.name?.split(" ")[0] || "Profile"}
+                </span>
               </Link>
 
+              {/* LOGOUT */}
               <button
                 className="btn btn-ghost btn-sm"
                 onClick={handleLogout}
@@ -148,6 +188,7 @@ export default function Navbar() {
       {/* MOBILE NAVIGATION */}
       {menuOpen && (
         <div className="navbar-mobile">
+
           <Link to="/marketplace" onClick={closeMenu}>
             <ShoppingCart size={18} />
             Marketplace
@@ -171,14 +212,25 @@ export default function Navbar() {
                 )}
               </Link>
 
+              <Link to="/notifications" onClick={closeMenu}>
+                <Bell size={18} />
+                Notifications
+
+                {unreadNotifications > 0 && (
+                  <span className="navbar-badge">
+                    {notificationLabel}
+                  </span>
+                )}
+              </Link>
+
               <Link to="/saved" onClick={closeMenu}>
                 <Heart size={18} />
                 Saved
               </Link>
 
               <Link to="/impact" onClick={closeMenu}>
-              <Leaf size={18} />
-              Impact Dashboard
+                <Leaf size={18} />
+                Impact Dashboard
               </Link>
 
               {user?.is_admin && (
@@ -207,7 +259,6 @@ export default function Navbar() {
                 <LogIn size={18} />
                 Login
               </Link>
-
 
               <Link
                 to="/register"

@@ -470,3 +470,19 @@
     width: 100%;
   }
 }
+
+/* Notification navigation */
+
+.notification-nav-link {
+  position: relative;
+}
+
+.notification-nav-link .navbar-badge {
+  margin-left: 2px;
+}
+
+@media (max-width: 760px) {
+  .navbar-mobile .navbar-badge {
+    margin-left: auto;
+  }
+}
